@@ -38,9 +38,13 @@ function Filters() {
   if (!statusFilter || characters.length === 0) return; // exist?
 
   statusFilter.innerHTML = ""; // clean content
-  characters.forEach((person) => {
+
+   const uniqueStatuses = new Set(); // filtered not repeat set => 0: "Alive" 1: "unknown" 2: "Dead"
+   characters.forEach(person => uniqueStatuses.add(person.status)); // create filtered array => Set(3) {'Alive', 'unknown', 'Dead'}
+   uniqueStatuses.forEach(status => {
     const option = document.createElement("option");
-    option.innerHTML = `<option  name="name" value="${person.status}"> ${person.status}`;
+    option.value = status;
+    option.textContent = status;
     statusFilter.appendChild(option);
   });
 
@@ -48,6 +52,28 @@ function Filters() {
     selectedStatus = e.target.value;
     filterResults();
   });
+
+
+    // Specie filter
+    let selectedSpecie = ""; 
+    const specieFilter = document.getElementById("specieFilter");
+    if (!specieFilter || characters.length === 0) return; // exist?
+  
+    specieFilter.innerHTML = ""; // clean content
+
+    const uniqueSpecies = new Set(); // filtered not repeat set => 0: "Alive" 1: "unknown" 2: "Dead"
+    characters.forEach(person => uniqueSpecies.add(person.species)); // create filtered array => Set(3) {'Alive', 'unknown', 'Dead'}
+    uniqueSpecies.forEach(specie => {
+     const option = document.createElement("option");
+     option.value = specie;
+     option.textContent = specie;
+     specieFilter.appendChild(option);
+   });
+  
+    specieFilter.addEventListener("change", (e) => {
+      selectedSpecie = e.target.value;
+      filterResults();
+    });
 
 
   
@@ -59,8 +85,9 @@ function Filters() {
     const filteredData = characters.filter((person) => {
       const matchesName = selectedName ? person.name === selectedName : true;
       const matchesStatus = selectedStatus ? person.status === selectedStatus : true;
+      const matchesSpecie = selectedSpecie ? person.species === selectedSpecie : true;
       console.log("filter is working!");
-      return matchesName && matchesStatus;
+      return matchesName && matchesStatus && matchesSpecie;
     });
 
     renderResults(filteredData);
@@ -78,12 +105,15 @@ function Filters() {
 
     data.forEach((person) => {
       const div = document.createElement("div");
+      const textDetail = document.createElement("div");
       const img = document.createElement("img");
 
       img.src = person.image;
-      div.textContent = `${person.name} ${person.species}  ${person.gender}`;
+      textDetail.textContent = `${person.name} , ${person.species} , ${person.gender} , ${person.status}`;
       div.className = "cardCharacter";
+      textDetail.className = "textDetail";
       div.appendChild(img);
+      div.appendChild(textDetail);
       resultList.appendChild(div);
     });
   }

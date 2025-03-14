@@ -34,7 +34,7 @@ function Header() {
 
           <div className="col-md-4  text-white p-3">
             <h2>Specie</h2>
-            <div id="specieFilter"></div>
+            <select id="specieFilter"></select>
           </div>
         </div>
       </div>
