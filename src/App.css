@@ -1,0 +1,79 @@
+header {
+}
+footer {
+  text-align: center;
+  color: rgba(202, 255, 89, 0.499);
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+#root {
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  min-width: 1200px;
+}
+
+#resultList 
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+}
+.container-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+}
+.flex {
+  display: flex;
+}
+.space-around {
+  justify-content: space-around;
+}
+
+.cardCharacter {
+  display: flex;
+  flex-direction: column;
+  background-color: #1a00356d;
+  color: rgb(202, 255, 89);
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 20px;
+  margin: 10px, 0px, 10px, 0px;
+  border-radius: 20px;
+}
+.cardCharacter img {
+  border-radius: 20px 20px 0px 0px;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+}
+h1 {
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  color: rgb(202, 255, 89) !important;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 50px;
+  margin: 10px, 0px, 10px, 0px;
+  margin-bottom: 30px !important;
+}
+
+button {
+  background-color: #9eca27;
+  border: none;
+  border-radius: 20px !important;
+  color: #002f35;
+  max-width: 200px !important;
+  padding: 10px;
+  margin-bottom: 30px !important;
+}
+
+.row {
+  justify-content: center;
+}
