@@ -24,7 +24,7 @@ function Header() {
         <div className="row">
           <div className="col-md-4  text-white p-3">
             <h2>Name</h2>
-            <select id="nameFilter"></select>
+            <input type="text" id="nameFilter" ></input>
           </div>
 
           <div className="col-md-4  text-white p-3">

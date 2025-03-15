@@ -17,17 +17,11 @@ function Filters() {
   // Name filter
   let selectedName = ""; 
   const nameFilter = document.getElementById("nameFilter");
-  if (!nameFilter || characters.length === 0) return; // exist?
+  
+  if (!nameFilter || characters.length === 0) return; // Exist?
 
-  nameFilter.innerHTML = ""; // clean content
-  characters.forEach((person) => {
-    const option = document.createElement("option");
-    option.innerHTML = `<option  name="name" value="${person.name}"> ${person.name}`;
-    nameFilter.appendChild(option);
-  });
-
-  nameFilter.addEventListener("change", (e) => {
-    selectedName = e.target.value;
+  nameFilter.addEventListener("input", (e) => {
+    selectedName = e.target.value.toLowerCase().trim(); 
     filterResults();
   });
 
@@ -35,8 +29,8 @@ function Filters() {
   // Status filter
   let selectedStatus = ""; 
   const statusFilter = document.getElementById("statusFilter");
-  if (!statusFilter || characters.length === 0) return; // exist?
 
+  if (!statusFilter || characters.length === 0) return; // exist?
   statusFilter.innerHTML = ""; // clean content
 
    const uniqueStatuses = new Set(); // filtered not repeat set => 0: "Alive" 1: "unknown" 2: "Dead"
@@ -76,14 +70,12 @@ function Filters() {
     });
 
 
-  
-
 
 
   // Filtrar los datos
   function filterResults() {
     const filteredData = characters.filter((person) => {
-      const matchesName = selectedName ? person.name === selectedName : true;
+      const matchesName = selectedName ? person.name.toLowerCase().includes(selectedName) : true;
       const matchesStatus = selectedStatus ? person.status === selectedStatus : true;
       const matchesSpecie = selectedSpecie ? person.species === selectedSpecie : true;
       console.log("filter is working!");
@@ -104,17 +96,41 @@ function Filters() {
     }
 
     data.forEach((person) => {
-      const div = document.createElement("div");
-      const textDetail = document.createElement("div");
-      const img = document.createElement("img");
 
-      img.src = person.image;
-      textDetail.textContent = `${person.name} , ${person.species} , ${person.gender} , ${person.status}`;
-      div.className = "cardCharacter";
-      textDetail.className = "textDetail";
-      div.appendChild(img);
-      div.appendChild(textDetail);
-      resultList.appendChild(div);
+
+
+
+
+const flipcard = document.createElement("div");
+const flipcardinner = document.createElement("div");
+const flipcardfront = document.createElement("div");
+const flipcardback = document.createElement("div");
+const Avatar = document.createElement("img");
+const textDetail = document.createElement("div");
+const buttonMore = document.createElement("button")
+
+flipcard.className = "flip-card";
+flipcardinner.className = "flip-card-inner";
+flipcardfront.className = "flip-card-front";
+flipcardback.className = "flip-card-back";
+Avatar.src = person.image;
+textDetail.textContent = `${person.name} , ${person.species} , ${person.gender} , ${person.status}`;
+textDetail.className = "textDetail";
+buttonMore.className = "buttonMore";
+buttonMore.textContent = "See More";
+
+
+
+resultList.appendChild(flipcard);
+flipcard.appendChild(flipcardinner);
+flipcardinner.appendChild(flipcardfront);
+flipcardfront.appendChild(Avatar);
+flipcardinner.appendChild(flipcardback);
+flipcardback.appendChild(textDetail);
+flipcardback.appendChild(buttonMore);
+
+
+
     });
   }
 }

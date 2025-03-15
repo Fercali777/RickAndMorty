@@ -5,6 +5,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Filters from "./components/filtersCreation";
 import CharacterList from "./components/CharacterList";
+import ShowModal from "./components/modal";
 
 
 
@@ -32,7 +33,7 @@ function App() {
 
   return (
     <>
-      
+      <ShowModal />
       <Header />
 
       <Filters />
